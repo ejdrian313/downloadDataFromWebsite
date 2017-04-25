@@ -1,0 +1,21 @@
+Question: Well, I'm pretty much trying to figure out how to pull information from a webpage, and bring it into my program (in Java). For example, if I know the exact page I want info from, for the sake of simplicity a Best Buy item page, how would I get the appropriate info I need off of that page? Like the title, price, description? What would this process even be called? I have no idea were to even begin researching this. Edit: Okay, I'm running a test for the JSoup(the one posted by BalusC), but I keep getting this error: Exception in thread "main" java.lang.NoSuchMethodError: java.util.LinkedList.peekFirst()Ljava/lang/Object;
+at org.jsoup.parser.TokenQueue.consumeWord(TokenQueue.java:209)
+at org.jsoup.parser.Parser.parseStartTag(Parser.java:117)
+at org.jsoup.parser.Parser.parse(Parser.java:76)
+at org.jsoup.parser.Parser.parse(Parser.java:51)
+at org.jsoup.Jsoup.parse(Jsoup.java:28)
+at org.jsoup.Jsoup.parse(Jsoup.java:56)
+at test.main(test.java:12)
+ I do have Apache Commons
+BalusC
+sblundy
+mdma
+Bill the Lizard
+Roman
+Kalpesh Soni
+Anton
+Peter Mortensen
+Kurru
+t0mm13b
+lipido
+Nelson
