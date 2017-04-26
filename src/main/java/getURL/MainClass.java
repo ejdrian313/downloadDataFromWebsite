@@ -1,38 +1,36 @@
 package getURL;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+import com.esotericsoftware.yamlbeans.YamlReader;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-
 public class MainClass {
 
 	public static void main(String[] args) {
 		try {
-			String url = "http://stackoverflow.com/questions/2835505";
-			PrintWriter writer = new PrintWriter("website.txt", "UTF-8");
+			String url = "https://github.com/relayr/pdm-test/blob/master/sensors.yml";
 			Document document = Jsoup.connect(url).get();
 
-			String question = document.select("#question .post-text").text();
-			System.out.println("Question: " + question);
-			writer.println("Question: " + question);
-	        Elements answerers = document.select("#answers .user-details a");
-			
-	        
-	        for (Element answerer : answerers) {
-	        	System.out.println("Answerer: " + answerer.text());
-	            writer.println(answerer.text());
-	        }
-	        writer.close();
-	        
-		} catch (IOException e) {
+			for (Element table : document.select("table[class=highlight tab-size js-file-line-container]")) {
+				for (Element row : table.select("tr")) {
+					Elements tds = row.select("td");
+					System.out.println(tds.get(0).text() + tds.get(1).text());
+				}
+			}
+
+			YamlReader reader = new YamlReader(new FileReader("file.yml"));
+			ArrayList<?> sensors = (ArrayList<?>) reader.read();
+			sensors.forEach(s -> System.out.println(s));
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-    }
+	}
 
 }
