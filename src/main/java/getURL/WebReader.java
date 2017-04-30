@@ -49,15 +49,15 @@ public class WebReader {
 			for (Object o : sensors) {
 				@SuppressWarnings("rawtypes")
 				Map map = (Map) o;
-				sensorList.add(new Sensor.Builder(map.get("id")).
-						engine(map.get("engine"))
-						.masterSensorId(map.get("masterSensorId")).
-						type(map.get("type")).
-						name(map.get("name"))
-						.value(map.get("value")).
-						minValue(map.get("min_value")).
-						maxValue(map.get("max_value")).
-						build());
+				sensorList.add(new Sensor.Builder(map.get("id"))
+						.engine(map.get("engine"))
+						.masterSensorId(map.get("masterSensorId"))
+						.type(map.get("type"))
+						.name(map.get("name"))
+						.value(map.get("value"))
+						.minValue(map.get("min_value"))
+						.maxValue(map.get("max_value"))
+						.build());
 			}
 			sensors.clear();
 
