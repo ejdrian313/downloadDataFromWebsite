@@ -12,13 +12,12 @@ import org.jsoup.nodes.Element;
 import com.esotericsoftware.yamlbeans.YamlReader;
 
 public class WebReader {
-	Document document;
-	StringBuilder temp;
+	private Document document;
+	private StringBuilder temp;
 
 	WebReader(String url) {
 		try {
 			document = Jsoup.connect(url).get();
-			readYamlFromGithub();
 		} catch (UnknownHostException u) {
 			System.err.println("Check internet connection");
 			System.exit(1);
@@ -27,7 +26,7 @@ public class WebReader {
 		} 
 	}
 
-	private void readYamlFromGithub() {
+	public void readYamlFromGithub() {
 		temp = new StringBuilder();
 		for (Element table : document.select("table[class=highlight tab-size js-file-line-container]")) {
 			for (Element row : table.select("tr")) {
@@ -49,6 +48,7 @@ public class WebReader {
 			for (Object o : sensors) {
 				@SuppressWarnings("rawtypes")
 				Map map = (Map) o;
+				
 				sensorList.add(new Sensor.Builder(map.get("id"))
 						.engine(map.get("engine"))
 						.masterSensorId(map.get("masterSensorId"))
