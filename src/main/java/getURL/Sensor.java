@@ -1,14 +1,15 @@
 package getURL;
 
 public class Sensor {
-	int id;
-	int engine;
-	int masterSensorId;
-	String type;
-	String name;
-	int value;
-	int min_value;
-	int max_value;
+	private int id;
+	private int engine;
+	private int masterSensorId;
+	private String type;
+	private String name;
+	private int value;
+	private int min_value;
+	private int max_value;
+	private boolean isMaster;
 
 	private Sensor(final Builder builder) {
 		this.id = builder.id;
@@ -52,6 +53,15 @@ public class Sensor {
 	public int getMasterSensorId() {
 		return masterSensorId;
 	}
+	
+	public boolean isMaster() {
+		return isMaster;
+	}
+
+	public void setMaster(boolean isMaster) {
+		this.isMaster = isMaster;
+	}
+
 
 	public static class Builder {
 		private final int id;
