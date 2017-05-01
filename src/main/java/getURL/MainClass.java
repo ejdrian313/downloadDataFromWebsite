@@ -16,6 +16,7 @@ public class MainClass {
 			} else url = "https://github.com/ejdrian313/downloadDataFromWebsite/blob/master/file.yml";
 			
 			WebReader webReader = new WebReader(url);
+			webReader.readYamlFromGithub();
 			sensors = new ArrayList<>(webReader.createArrayListFromYaml());
 			
 			Collections.sort(sensors, new Comparator<Sensor>() {
