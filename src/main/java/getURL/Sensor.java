@@ -1,5 +1,8 @@
 package getURL;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Sensor {
 	private int id;
 	private int engine;
@@ -9,17 +12,32 @@ public class Sensor {
 	private int value;
 	private int min_value;
 	private int max_value;
-	private boolean isMaster;
-
+	
+	
 	private Sensor(final Builder builder) {
-		this.id = builder.id;
-		this.engine = builder.engine;
-		this.masterSensorId = builder.masterSensorId;
-		this.type = builder.type;
-		this.name = builder.name;
-		this.value = builder.value;
-		this.min_value = builder.min_value;
-		this.max_value = builder.max_value;
+		if (builder.type == null) {
+			String notVaild = "It's not vaild data to create an object of Sensor.class. "
+								+ "\nCheck your data file";
+			this.name = notVaild;
+			System.out.println(notVaild);
+		} else {
+			if (builder.type.equals("temperature")) {
+				this.id = builder.id;
+				this.masterSensorId = builder.masterSensorId;
+				this.type = builder.type;
+				this.value = builder.value;
+				this.min_value = builder.min_value;
+				this.max_value = builder.max_value;
+			} else {
+				this.id = builder.id;
+				this.engine = builder.engine;
+				this.type = builder.type;
+				this.name = builder.name;
+				this.value = builder.value;
+				this.min_value = builder.min_value;
+				this.max_value = builder.max_value;
+			}
+		}
 	}
 
 	public int getId() {
@@ -53,15 +71,13 @@ public class Sensor {
 	public int getMasterSensorId() {
 		return masterSensorId;
 	}
-	
-	public boolean isMaster() {
-		return isMaster;
-	}
 
-	public void setMaster(boolean isMaster) {
-		this.isMaster = isMaster;
+	@Override
+	public String toString() {
+		return Sensor.class.getName() + id + ", engine=" + engine + ", masterSensorId=" + masterSensorId + ", type="
+				+ type + ", name=" + name + ", value=" + value + ", min_value=" + min_value + ", max_value=" + max_value
+				+ "]";
 	}
-
 
 	public static class Builder {
 		private final int id;
@@ -78,24 +94,13 @@ public class Sensor {
 		}
 
 		public Builder engine(final Object object) {
-			if (object != null) {
-				this.engine = Integer.valueOf((String) object);
-				return this;
-			} else {
-				this.engine = 0;
-				return this;
-			}
+			this.engine = Integer.valueOf((String) object);
+			return this;
 		}
 
 		public Builder masterSensorId(final Object object) {
-			if (object != null) {
-				this.masterSensorId = Integer.valueOf((String) object);
-				return this;
-			} else {
-				this.masterSensorId = 0;
-				return this;
-			}
-
+			this.masterSensorId = Integer.valueOf((String) object);
+			return this;
 		}
 
 		public Builder type(final Object object) {
