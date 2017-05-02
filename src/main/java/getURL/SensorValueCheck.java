@@ -5,14 +5,20 @@ import java.util.ArrayList;
 public abstract class SensorValueCheck {
 	
 	public static boolean isValueCorrect(Sensor s) {
-		if(s.getMin_value() > s.getValue() && s.getValue() < s.getMax_value()) {
+		if(s.getMin_value() < s.getValue() && s.getValue() < s.getMax_value()) {
 			return true;
 		} else return false;
 	}
 	
-	public static void getChildSensors(Sensor s, ArrayList<Sensor> listSensor) {
-		for(Sensor s : listSensor) {
-			s.getMasterSensorId() // TODO: implement method to get all the child of master sensor.
+	public static void checkChildSensors(Sensor s, ArrayList<Sensor> listSensor) {
+		for(Sensor se : listSensor) {
+			if(se.getType().equals("temperature")) {
+				if(se.getMasterSensorId() == s.getId()) {
+					System.out.println("For sensor: " + s.getId() + 
+							" child id: " + se.getId() + " is correct: "
+							+ isValueCorrect(se));
+				}
+			}
 		}
 	}
 }
