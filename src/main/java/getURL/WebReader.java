@@ -3,7 +3,7 @@ package getURL;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -46,18 +46,27 @@ public class WebReader {
 			sensors = (ArrayList<?>) reader.read();
 
 			for (Object o : sensors) {
-				@SuppressWarnings("rawtypes")
-				Map map = (Map) o;
+				@SuppressWarnings("unchecked")
+				HashMap<String, String> map =  (HashMap<String, String>) o;
 				
-				sensorList.add(new Sensor.Builder(map.get("id"))
-						.engine(map.get("engine"))
-						.masterSensorId(map.get("masterSensorId"))
-						.type(map.get("type"))
-						.name(map.get("name"))
-						.value(map.get("value"))
-						.minValue(map.get("min_value"))
-						.maxValue(map.get("max_value"))
-						.build());
+				if(map.get("type").equals("temperature")) {
+					sensorList.add(new Sensor.Builder(map.get("id"))
+							.masterSensorId(map.get("master-sensor-id"))
+							.type(map.get("type"))
+							.value(map.get("value"))
+							.minValue(map.get("min_value"))
+							.maxValue(map.get("max_value"))
+							.build());
+				} else {
+					sensorList.add(new Sensor.Builder(map.get("id"))
+							.engine(map.get("engine"))
+							.type(map.get("type"))
+							.name(map.get("name"))
+							.value(map.get("value"))
+							.minValue(map.get("min_value"))
+							.maxValue(map.get("max_value"))
+							.build());
+				}
 			}
 			sensors.clear();
 

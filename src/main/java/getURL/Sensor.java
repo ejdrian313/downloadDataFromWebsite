@@ -1,8 +1,5 @@
 package getURL;
 
-import java.util.Collections;
-import java.util.Comparator;
-
 public class Sensor {
 	private int id;
 	private int engine;

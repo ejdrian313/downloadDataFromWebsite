@@ -26,7 +26,8 @@ public class MainClass {
 		        }
 		    });
 			
-			sensors.forEach(s -> System.out.println("Sensor: " + s.getId() +" of " + s.getType() + " current value: " + s.getValue()));
+			sensors.forEach(s -> System.out.println("Sensor: " + s.getId() +" of " + s.getMasterSensorId() + " current value: " + s.getValue()));
+			sensors.forEach(s -> SensorValueCheck.checkChildSensors(s, sensors));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
