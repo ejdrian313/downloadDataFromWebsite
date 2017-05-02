@@ -26,8 +26,19 @@ public class MainClass {
 		        }
 		    });
 			
-			sensors.forEach(s -> System.out.println(s));
-			sensors.forEach(s -> SensorValueCheck.checkChildSensors(s, sensors));
+			sensors.forEach(System.out::println);
+			
+			System.out.println("--------------------------------------------------------");
+			
+			sensors.forEach(s -> { if (s.getType().equals("pressure"))
+							SensorValueCheck.checkChildSensors(s, sensors);
+								});	
+			
+			sensors.get(2).setValue(500);
+			
+			sensors.forEach(s -> { if (s.getType().equals("pressure"))
+				SensorValueCheck.checkChildSensors(s, sensors);
+					});	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
