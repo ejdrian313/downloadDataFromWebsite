@@ -1,3 +1,6 @@
-/.gradle//.class//.bin//.lock/
+/.gradle/
+/.class/
+/.bin/
+/.lock/
 /bin/
 /build/
