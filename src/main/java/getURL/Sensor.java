@@ -71,9 +71,19 @@ public class Sensor {
 
 	@Override
 	public String toString() {
-		return Sensor.class.getName() + id + ", engine=" + engine + ", masterSensorId=" + masterSensorId + ", type="
-				+ type + ", name=" + name + ", value=" + value + ", min_value=" + min_value + ", max_value=" + max_value
-				+ "]";
+		if(type.equals("temperature")) {
+			return Sensor.class.getName() + id + ", masterSensorId=" + masterSensorId 
+					+ ", type="+ type 
+					+ ", value=" + value
+					+ ", min_value=" + min_value 
+					+ ", max_value=" + max_value
+					+ "]";
+		} else {
+			return Sensor.class.getName() + id + ", engine=" + engine 
+					+", type="+ type + ", name=" + name + ", value=" + value + 
+					", min_value=" + min_value + ", max_value=" + max_value
+					+ "]";
+		}
 	}
 
 	public static class Builder {
