@@ -68,6 +68,11 @@ public class Sensor {
 	public int getMasterSensorId() {
 		return masterSensorId;
 	}
+	
+	// Only for check err print
+	public void setValue(int i) {
+		this.value = i;
+	}
 
 	@Override
 	public String toString() {
